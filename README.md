@@ -57,6 +57,7 @@ you can try some calculations like below:
 
 
 Master node:
+
 ![image](https://github.com/gsbarure/flask-calculator/assets/125451289/ff6dbfbd-ef4e-4a9c-9fd8-6fb5f0e13d48)
 
 
