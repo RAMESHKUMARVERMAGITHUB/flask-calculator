@@ -1,40 +1,96 @@
-# Flask WebApp Calc
+Project Description
 
-[![Mit License Icon](https://black.readthedocs.io/en/stable/_static/license.svg)](https://github.com/UltiRequiem/flask-calculator/blob/main/LICENSE)
-[![Code Style](https://img.shields.io/badge/Code%20Style-black-000000.svg)](https://github.com/psf/black)
-[![Total Lines](https://img.shields.io/tokei/lines/github.com/UltiRequiem/flask-calculator?color=blue&label=Total%20Lines)](https://github.com/UltiRequiem/flask-calculator)
-![CodeQL](https://github.com/UltiRequiem/flask-calculator/workflows/CodeQL/badge.svg)
-![Repo Size](https://img.shields.io/github/repo-size/ultirequiem/flask-calculator?style=flat-square&label=Repo)
+The project aims to deploy a web application using Docker Swarm, a container orchestration tool that allows for easy management and scaling of containerized applications. The project will utilize Docker Swarm's production-ready features such as load balancing, rolling updates, and service discovery to ensure high availability and reliability of the web application. The project will involve creating a Dockerfile to package the application into a container and then deploying it onto a Swarm cluster. The Swarm cluster will be configured to provide automated failover, load balancing, and horizontal scaling to the application. The goal of the project is to demonstrate the benefits of Docker Swarm for deploying and managing containerized applications in production environments.
 
-A simple calculator made with Flask.
+What is Docker Swarm?
 
-[![image](https://user-images.githubusercontent.com/71897736/113590421-794cea80-95e7-11eb-8184-9aedad42131b.png)](https://flask-calculator.ultirequiem.repl.co)
+Docker Swarm is an orchestration management tool that runs on Docker applications. It helps end-users in creating and deploying a cluster of Docker nodes.
 
-## Demo
+Step1:Take three EC2 instance to make one as Master Node(Leader) and other two as a worker node
 
-Here is a working live demo: https://flask-calculator.ultirequiem.repl.co
-it runs in [Repl.it](https://repl.it).
+Open port 2377 is for connections :
 
-## Development setup
+This port is used for communication between the nodes of a Docker Swarm or cluster.
 
-1. Clone the proyect
+Step2:Install docker on all the nodes with below script
 
-```bash
-git clone https://github.com/UltiRequiem/flask-calculator.git ; cd flask-calculator
-```
+#!/bin/bash
+    sudo apt-get update
+    sudo apt-get install docker.io -y
+    sudo usermod -aG docker $USER
+    sudo systemctl start docker
+    sudo systemctl enable docker
 
-2. Create a virtual environment
+Master node
 
-```bash
-python3 -m venv env;source env/bin/activate
-```
+docker swarm init so that it will treat this as leader
 
-3. Install the dependencies
+Step3:Now,move to worker node and issue this command to join these worker nodes with Master one.
 
-```bash
-pip install -r requirements.txt
-```
+issue docker swarm join command over worker nodes which gets generated after docker swarm init over master node.
 
-## License
+Worker node-1
 
-This project is licensed under the [MIT](./LICENSE) License.
+Worker Node-2
+
+Step4:Verify the nodes status--docker node ls
+
+Code Availability:https://github.com/gsbarure/flask-calculator.git
+
+Step5:Create a service
+
+specify which container image to use and which commands to execute inside running containers. In the replicated services model, the swarm manager distributes a specific number of replica tasks among the nodes based upon the scale you set in the desired state.
+
+sudo docker service create --name flask-calculator3 --replicas 3 --publish 3000:3000 gajananbarure/gajananb-mycalci-app(Image available on dockerhub--gajananbarure)
+
+Check running container status--docker ps
+
+To check services--docker service ls
+
+open port 3000
+
+Step6:Flask calculator app is successfull on both Manager/worker nodes..!!
+
+you can try some calculations like below:
+
+Master node:
+
+Worker node:
+
+Application is working as expected,
+
+Tried multiplication with this app!
+
+Step7:Auto healing:
+
+Manager manages autohealing if crash/kill something manager will manage the replicas as if killled/crashed it will autocreate
+
+Step8:You can check docker info for more details like also it will show if server is Manager/worker node like below attached snap.
+
+Master Node:
+
+Worker node:
+
+Dockehub image:gajananbarure/gajananb-mycalci-app
+
+Which platform should you use?
+
+Docker swarm vs Kubernetes:
+
+Both Kubernetes and Docker Swarm serve their particular use cases. Which one is best for you depends on your or your organization's current needs.
+
+When starting, Docker Swarm is an easy-to-use solution to manage your containers at scale. If you or your company does not need to manage complex workloads, then Docker Swarm is the right choice.
+
+If your applications are critical and you are looking to include monitoring, security features, high availability, and flexibility, then Kubernetes is the right choice.
+
+
+Code Availability:https://github.com/gsbarure/flask-calculator.git
+
+Linkdin:https://www.linkedin.com/in/gajanan-barure-7351a4140
+
+***Happy Learning :)***✌✌
+
+Keep learning,Keep growing🎇🎇
+
+#day83#90daysofdevops#devopscommunity#
+
