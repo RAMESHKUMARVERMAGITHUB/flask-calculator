@@ -53,13 +53,23 @@ Step6:Flask calculator app is successfull on both Manager/worker nodes..!!
 
 you can try some calculations like below:
 
+![image](https://github.com/gsbarure/flask-calculator/assets/125451289/496e0360-d77e-4f09-97f9-821038fda9ac)
+
+
 Master node:
+![image](https://github.com/gsbarure/flask-calculator/assets/125451289/ff6dbfbd-ef4e-4a9c-9fd8-6fb5f0e13d48)
+
 
 Worker node:
+
+![image](https://github.com/gsbarure/flask-calculator/assets/125451289/6f870afa-2ea0-4658-893d-15c60664f65f)
 
 Application is working as expected,
 
 Tried multiplication with this app!
+
+![image](https://github.com/gsbarure/flask-calculator/assets/125451289/77fb8603-11d9-44ec-a12b-68d816132b6c)
+
 
 Step7:Auto healing:
 
