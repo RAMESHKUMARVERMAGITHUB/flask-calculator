@@ -69,7 +69,7 @@ pipeline{
         //     steps{
         //         sh "docker stop flask-calculator || true"  // Stop the container if it's running, ignore errors
         //         sh "docker rm flask-calculator || true" 
-        //         sh "docker run -d --name flask-calculator -p 3000:3000 rameshkumarverma/flask-calculator:latest"
+        //         sh "docker run -d --name flask-calculator -p 3000:3000 gajananbarure/gajananb-mycalci-app"
         //     }
         // }
       stage('Deploy to Kubernetes') {
