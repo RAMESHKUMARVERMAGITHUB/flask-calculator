@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flask-calculator
-        image: rameshkumarverma/flask-calculator:latest
+        image: gajananbarure/gajananb-mycalci-app
         ports:
         - containerPort: 3000
