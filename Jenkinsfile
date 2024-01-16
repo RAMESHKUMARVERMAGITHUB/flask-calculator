@@ -15,14 +15,14 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/rameshkumarvermagithub/python-calculator.git'
+                git branch: 'main', url: 'https://github.com/rameshkumarvermagithub/flask-calculator.git'
             }
         }
         stage("Sonarqube Analysis "){
             steps{
                 withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=python-calculator \
-                    -Dsonar.projectKey=python-calculator'''
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=flask-calculator \
+                    -Dsonar.projectKey=flask-calculator'''
                 }
             }
         }
@@ -53,23 +53,23 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build -t python-calculator ."
-                       sh "docker tag python-calculator rameshkumarverma/python-calculator:latest"
-                       sh "docker push rameshkumarverma/python-calculator:latest"
+                       sh "docker build -t flask-calculator ."
+                       sh "docker tag flask-calculator rameshkumarverma/flask-calculator:latest"
+                       sh "docker push rameshkumarverma/flask-calculator:latest"
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image rameshkumarverma/python-calculator:latest > trivyimage.txt"
+                sh "trivy image rameshkumarverma/flask-calculator:latest > trivyimage.txt"
             }
         }
         // stage("deploy_docker"){
         //     steps{
-        //         sh "docker stop python-calculator || true"  // Stop the container if it's running, ignore errors
-        //         sh "docker rm python-calculator || true" 
-        //         sh "docker run -d --name python-calculator -p 5000:5000 rameshkumarverma/python-calculator:latest"
+        //         sh "docker stop flask-calculator || true"  // Stop the container if it's running, ignore errors
+        //         sh "docker rm flask-calculator || true" 
+        //         sh "docker run -d --name flask-calculator -p 3000:3000 rameshkumarverma/flask-calculator:latest"
         //     }
         // }
       stage('Deploy to Kubernetes') {
